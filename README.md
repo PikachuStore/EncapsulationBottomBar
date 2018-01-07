@@ -1,21 +1,21 @@
 # EncapsulationBottomBar
-###使用步骤：
+### 使用步骤：
 
 Step 1.Add it in your root build.gradle at the end of repositories:
 ```
-	allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
+allprojects {
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
 	}
+}
 ```
 
 Step 2. Add the dependency:
 ```
-	dependencies {
-	        compile 'com.github.PikachuStore:EncapsulationBottomBar:1.0.0'
-	}
+dependencies {
+	compile 'com.github.PikachuStore:EncapsulationBottomBar:1.0.0'
+}
 ```
 
 Step 3.xml:
@@ -60,35 +60,34 @@ Step 3.xml:
 
 Step 4.在Activity中添加如下代码：
 ```
-    // 初始化导航栏
-    private void initTabHost() {
+// 初始化导航栏
+private void initTabHost() {
 
-        mTabHost.setup(this, getSupportFragmentManager(), R.id.tabHostContent);
+	mTabHost.setup(this, getSupportFragmentManager(), R.id.tabHostContent);
 
-        // 消息                         标识 ，必须不一样
-        mTabHost.addTab(mTabHost.newTabSpec("0").setIndicator(
+	// 消息                         标识 ，必须不一样
+	mTabHost.addTab(mTabHost.newTabSpec("0").setIndicator(
                 new BottomBarItem(this,R.drawable.msg_selector,R.color.bottom_bar_selector,"消息",5, CircleStyle.REDSOLID))
                 ,BlankFragment.class,null);
 
-        // 通讯
-        // BottomBarItem 参数一：上下文对象 参数二：图片选择器
-        // 参数三：文字颜色选择器  参数四：文本内容 参数五：数字提醒(没有传0)
-        // 参数六：数字提醒的样式
-        // BlankFragment.class 此Tab所对应的fragment
-        mTabHost.addTab(mTabHost.newTabSpec("1").setIndicator(
+	// 通讯
+	// BottomBarItem 参数一：上下文对象  参数二：图片选择器   参数三：文字颜色选择器
+	//  参数四：文本内容 参数五：数字提醒(没有传0)   参数六：数字提醒的样式
+ // BlankFragment.class 此Tab所对应的fragment
+mTabHost.addTab(mTabHost.newTabSpec("1").setIndicator(
                 new BottomBarItem(this,R.drawable.address_book_selector,R.color.bottom_bar_selector,"通讯",8,CircleStyle.WHITESOLID))
                 ,BlankFragment.class,null);
 
-        ...
+	...
 
         mTabHost.getTabWidget().setShowDividers(LinearLayout.SHOW_DIVIDER_NONE);
 		
-		// 默认选中第一个
-        mTabHost.setCurrentTab(0);
-    }
+	// 默认选中第一个
+	mTabHost.setCurrentTab(0);
+}
 ```
 
 ```
-	// 动态更新数字提示
-	((BottomBarItem) mTabHost.getTabWidget().getChildTabViewAt(2)).setNoticeNum(50);
+// 动态更新数字提示
+((BottomBarItem) mTabHost.getTabWidget().getChildTabViewAt(2)).setNoticeNum(50);
 ```
