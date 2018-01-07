@@ -63,6 +63,7 @@ Step 4.在Activity中添加如下代码：
 // 初始化导航栏
 private void initTabHost() {
 
+	// 需要先查找控件FragmentTabHost mTabHost
 	mTabHost.setup(this, getSupportFragmentManager(), R.id.tabHostContent);
 
 	// 消息                         标识 ，必须不一样
