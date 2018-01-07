@@ -73,12 +73,12 @@ private void initTabHost() {
 	// 通讯
 	// BottomBarItem 参数一：上下文对象  参数二：图片选择器   参数三：文字颜色选择器
 	//  参数四：文本内容 参数五：数字提醒(没有传0)   参数六：数字提醒的样式
- // BlankFragment.class 此Tab所对应的fragment
-mTabHost.addTab(mTabHost.newTabSpec("1").setIndicator(
+	// BlankFragment.class 此Tab所对应的fragment
+	mTabHost.addTab(mTabHost.newTabSpec("1").setIndicator(
                 new BottomBarItem(this,R.drawable.address_book_selector,R.color.bottom_bar_selector,"通讯",8,CircleStyle.WHITESOLID))
                 ,BlankFragment.class,null);
 
-	...
+		...
 
         mTabHost.getTabWidget().setShowDividers(LinearLayout.SHOW_DIVIDER_NONE);
 		
