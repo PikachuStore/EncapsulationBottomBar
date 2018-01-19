@@ -1,35 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:minHeight="50dp">
 
     <ImageView
         android:id="@+id/bottom_bar_img"
-        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_width="24dp"
-        android:layout_height="24dp" />
+        android:layout_marginTop="8dp"
+        android:minHeight="24dp"
+        android:minWidth="24dp" />
 
     <org.bottombar.widget.Badge
-        android:id="@+id/badge_badge"
-        android:layout_toRightOf="@id/bottom_bar_img"
-        android:layout_toEndOf="@id/bottom_bar_img"
+        android:id="@+id/bottombar_badge"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="4dp"
         android:layout_marginLeft="-9dp"
         android:layout_marginStart="-9dp"
-        android:layout_width="15dp"
-        android:layout_height="15dp"/>
+        android:layout_marginTop="4dp"
+        android:layout_toEndOf="@id/bottom_bar_img"
+        android:layout_toRightOf="@id/bottom_bar_img" />
 
     <TextView
         android:id="@+id/bottom_bar_tv"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/bottom_bar_img"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="6dp"
-        android:textSize="10dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bottom_bar_img"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="6dp"
+        android:layout_marginTop="3dp"
+        android:textSize="10dp" />
 
 </RelativeLayout>
