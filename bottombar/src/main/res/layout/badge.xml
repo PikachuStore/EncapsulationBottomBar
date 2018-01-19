@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_badge"
     android:layout_width="13dp"
     android:layout_height="13dp"
-    android:id="@+id/layout_badge"
     android:background="@drawable/notice1">
 
     <TextView
         android:id="@+id/badge"
         android:layout_width="13dp"
         android:layout_height="13dp"
-        android:textSize="9dp"
-        android:maxLength="2"
         android:gravity="center"
-        android:text="99"/>
+        android:maxLength="2"
+        android:text="99"
+        android:textSize="9dp" />
 
 
 </RelativeLayout>
