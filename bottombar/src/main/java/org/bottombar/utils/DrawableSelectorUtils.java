@@ -1,10 +1,9 @@
-package org.bottombar.widget;
+package org.bottombar.utils;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
-import android.support.annotation.NonNull;
 
 /**
  * Created by macpro on 2018/1/8.
