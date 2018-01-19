@@ -14,85 +14,65 @@ allprojects {
 Step 2. Add the dependency:
 ```
 dependencies {
-	compile 'com.github.PikachuStore:EncapsulationBottomBar:1.0.0'
+	compile 'com.github.PikachuStore:EncapsulationBottomBar:2.0.0'
 }
 ```
 
 Step 3.xml:
 ```
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.example.pro.myapplication.MainActivity">
+    tools:context="com.example.macpro.myapplication.MainActivity">
 
-	<!--不要更改此id-->
-    <FrameLayout
-        android:id="@+id/tabHostContent"
+    <org.bottombar.widget.EncapsulationBottomBar
+        android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_height="match_parent"/>
 
-    <!--导航栏上方的分割线-->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.3dp"
-        android:background="#868686"/>
-
-    <!--org.bottombar.widget.FragmentTabHost此fragment不会销毁-->
-    <!--android.support.v4.app.FragmentTabHost切换底部按钮fragment会销毁-->
-    <org.bottombar.widget.FragmentTabHost
-        android:id="@+id/tabHost"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white">
-
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"/>
-
-    </org.bottombar.widget.FragmentTabHost>
-
-</LinearLayout>
+</RelativeLayout>
 ```
 
 Step 4.在Activity中添加如下代码：
 ```
-// 初始化导航栏
-private void initTabHost() {
 
-	// 需要先查找控件FragmentTabHost mTabHost
-	mTabHost.setup(this, getSupportFragmentManager(), R.id.tabHostContent);
+    // 设置数据即可
+    bottomBar.setTabDatas(initDatas());
 
-	// 消息                         标识 ，必须不一样
-	mTabHost.addTab(mTabHost.newTabSpec("0").setIndicator(
-                new BottomBarItem(this,R.drawable.msg_selector,R.color.bottom_bar_selector,"消息",5, CircleStyle.REDSOLID))
-                ,BlankFragment.class,null);
+    private List<BottomBarEntity> initDatas() {
 
-	// 通讯
-	// BottomBarItem 参数一：上下文对象  参数二：图片选择器   参数三：文字颜色选择器
-	//  参数四：文本内容 参数五：数字提醒(没有传0)   参数六：数字提醒的样式(CircleStyle.REDSOLID-红，WHITESOLID白)
-	// BlankFragment.class 此Tab所对应的fragment
-	mTabHost.addTab(mTabHost.newTabSpec("1").setIndicator(
-                new BottomBarItem(this,R.drawable.address_book_selector,R.color.bottom_bar_selector,"通讯",8,CircleStyle.WHITESOLID))
-                ,BlankFragment.class,null);
+        List<BottomBarEntity> list = new ArrayList<>();
 
-		...
 
-        mTabHost.getTabWidget().setShowDividers(LinearLayout.SHOW_DIVIDER_NONE);
-		
-	// 默认选中第一个
-	mTabHost.setCurrentTab(0);
-}
+        list.add(new BottomBarEntity(BlankFragment.class,
+                new BottomBarItem(this,R.mipmap.msg_normal,R.mipmap.msg_press,
+                        R.color.bottom_bar_selector,"消息","100",CircleStyle.WHITESOLID)
+        ));
+
+        Bundle bundle = new Bundle();
+        bundle.putString("url","http:");
+
+        list.add(new BottomBarEntity(BlankFragment.class,
+                new BottomBarItem(this,R.mipmap.communication_normal,R.mipmap.communication_press,
+                       Color.RED,Color.BLUE,"通讯",100,CircleStyle.WHITESOLID),bundle
+        ));
+
+        ... // 有很多重载方法
+
+        return list;
+
+    }
 ```
 
 ```
-// 动态更新数字提示
-((BottomBarItem) mTabHost.getTabWidget().getChildTabViewAt(2)).setNoticeNum(50);
+// 动态更新底部按钮index位置的数字提示
+bottomBar.setNoticeNum(index,int or string);
+// 重写index位置的底部按钮点击事件
+bottomBar.overwriteListener(index,listener);
+... 
 ```
 > 效果
-
 
 ![这里写图片描述](https://raw.githubusercontent.com/PikachuStore/EncapsulationBottomBar/master/Screenshot_2018-01-07-11-55-51.png)
