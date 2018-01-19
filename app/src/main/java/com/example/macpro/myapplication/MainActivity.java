@@ -1,60 +1,82 @@
 package com.example.macpro.myapplication;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.LinearLayout;
+import android.view.View;
+import android.widget.Toast;
 
-
+import org.bottombar.bean.BottomBarEntity;
 import org.bottombar.widget.BottomBarItem;
 import org.bottombar.widget.CircleStyle;
-import org.bottombar.widget.FragmentTabHost;
+import org.bottombar.widget.EncapsulationBottomBar;
+
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    FragmentTabHost mTabHost;
+    EncapsulationBottomBar bottomBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTabHost = findViewById(R.id.tabHost);
+        // 1
+        bottomBar = findViewById(R.id.bottom_bar);
 
-        initTabHost();
+        // 2
+        bottomBar.setTabDatas(initDatas());
 
-        // 动态更新数字提示
-        ((BottomBarItem) mTabHost.getTabWidget().getChildTabViewAt(2)).setNoticeNum(50);
+        bottomBar.setLineColor(Color.RED);
+
+        bottomBar.setCurrentTab(2);
+
+        bottomBar.getTabView(0);
+        bottomBar.overwriteListener(2, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(MainActivity.this, "重写点击事件", Toast.LENGTH_SHORT).show();
+
+                startActivity(new Intent(MainActivity.this,Main2Activity.class));
+
+            }
+        });
+
+        bottomBar.setNoticeNum(1,"1");
+        bottomBar.setNoticeStyle(1,CircleStyle.REDSOLID);
     }
 
+    private List<BottomBarEntity> initDatas() {
 
-    // 初始化导航栏
-    private void initTabHost() {
+        List<BottomBarEntity> list = new ArrayList<>();
 
-        mTabHost.setup(this, getSupportFragmentManager(), R.id.tabHostContent);
 
-        // 消息                         标识 ，必须不一样
-        mTabHost.addTab(mTabHost.newTabSpec("0").setIndicator(
-                new BottomBarItem(this,R.drawable.msg_selector,R.color.bottom_bar_selector,"消息",5, CircleStyle.REDSOLID))
-                ,BlankFragment.class,null);
+        list.add(new BottomBarEntity(BlankFragment.class,
+                new BottomBarItem(this,R.mipmap.msg_normal,R.mipmap.msg_press,
+                        R.color.bottom_bar_selector,"消息","100",CircleStyle.WHITESOLID)
+        ));
 
-        // 通讯
-        mTabHost.addTab(mTabHost.newTabSpec("1").setIndicator(
-                new BottomBarItem(this,R.drawable.address_book_selector,R.color.bottom_bar_selector,"通讯",8,CircleStyle.WHITESOLID))
-                ,BlankFragment.class,null);
+        Bundle bundle = new Bundle();
+        bundle.putString("url","http:");
 
-        // 应用
-        mTabHost.addTab(mTabHost.newTabSpec("2").setIndicator(
-                new BottomBarItem(this,R.drawable.application_selector,R.color.bottom_bar_selector,"应用",0,CircleStyle.REDSOLID))
-                ,BlankFragment.class,null);
+        list.add(new BottomBarEntity(BlankFragment.class,
+                new BottomBarItem(this,R.mipmap.communication_normal,R.mipmap.communication_press,
+                       Color.RED,Color.BLUE,"通讯",100,CircleStyle.WHITESOLID),bundle
+        ));
 
-        // 我的
-        mTabHost.addTab(mTabHost.newTabSpec("3").setIndicator(
-                new BottomBarItem(this,R.drawable.me_selector,R.color.bottom_bar_selector,"我的",0,CircleStyle.REDSOLID))
-                ,BlankFragment.class,null);
+        list.add(new BottomBarEntity(BlankFragment.class,
+                new BottomBarItem(this,R.mipmap.communication_normal,R.mipmap.communication_press,
+                        Color.RED,Color.BLUE,"通讯","",CircleStyle.REDSOLID)
+        ));
 
-        mTabHost.getTabWidget().setShowDividers(LinearLayout.SHOW_DIVIDER_NONE);
+        return list;
 
-        mTabHost.setCurrentTab(0);
     }
+
 }

@@ -4,29 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:clipChildren="false"
     tools:context="com.example.macpro.myapplication.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/tabHostContent"
+    <org.bottombar.widget.EncapsulationBottomBar
+        android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.3dp"
-        android:background="#868686"/>
-
-    <org.bottombar.widget.FragmentTabHost
-        android:id="@+id/tabHost"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white">
-
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"/>
-
-    </org.bottombar.widget.FragmentTabHost>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
