@@ -34,9 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         bottomBar.setLineColor(Color.RED);
 
-        bottomBar.setCurrentTab(2);
 
-        bottomBar.getTabView(0);
         bottomBar.overwriteListener(2, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
 
         bottomBar.setNoticeNum(1,"1");
         bottomBar.setNoticeStyle(1,CircleStyle.REDSOLID);
