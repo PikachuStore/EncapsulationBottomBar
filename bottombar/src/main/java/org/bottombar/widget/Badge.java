@@ -16,30 +16,30 @@ import org.bottombar.R;
 
 public class Badge extends RelativeLayout {
 
+    // Badge文字
     private TextView badge_tv;
     private RelativeLayout layout;
 
 
-    public Badge(Context context ) {
-        this(context,null);
+    public Badge(Context context) {
+        this(context, null);
     }
 
     public Badge(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
-
         // 加载布局
-        LayoutInflater.from(context).inflate(R.layout.badge,this,true);
+        LayoutInflater.from(context).inflate(R.layout.badge, this, true);
         this.badge_tv = findViewById(R.id.badge);
         this.layout = findViewById(R.id.layout_badge);
         this.layout.setVisibility(GONE);
 
     }
 
+    // 设置Badge样式
+    public void setCircleStyle(CircleStyle style) {
 
-    public void setCircleStyle(CircleStyle style){
-
-        switch (style){
+        switch (style) {
 
             // 红底白字
             case REDSOLID:
@@ -54,31 +54,31 @@ public class Badge extends RelativeLayout {
         }
     }
 
+    // 设置提醒数字(int)
+    public void setBadge_Num_ByInt(int num) {
 
-    public void  setBadge_Num_ByInt(int num){
-
-        if (num==0){
+        if (num == 0) {
             this.layout.setVisibility(GONE);
-        }else if (num>0&&num<=99){
+        } else if (num > 0 && num <= 99) {
             this.layout.setVisibility(VISIBLE);
-            this.badge_tv.setText(num+"");
-        }else if (num>99){
+            this.badge_tv.setText(String.valueOf(num));
+        } else if (num > 99) {
             this.layout.setVisibility(VISIBLE);
-            this.badge_tv.setText("99");
+            this.badge_tv.setText(R.string.max_badge);
         }
     }
 
+    // 设置提醒数字(String)
+    public void setBadge_Num_ByString(String num) {
 
-    public void  setBadge_Num_ByString(String num){
-
-        if (Integer.parseInt(num)==0){
-            this.badge_tv.setVisibility(GONE);
-        }else if (Integer.parseInt(num)>0&&Integer.parseInt(num)<=99){
-            this.badge_tv.setVisibility(VISIBLE);
+        if (Integer.parseInt(num) == 0) {
+            this.layout.setVisibility(GONE);
+        } else if (Integer.parseInt(num) > 0 && Integer.parseInt(num) <= 99) {
+            this.layout.setVisibility(VISIBLE);
             this.badge_tv.setText(num);
-        }else if (Integer.parseInt(num)>99){
-            this.badge_tv.setVisibility(VISIBLE);
-            this.badge_tv.setText("99");
+        } else if (Integer.parseInt(num) > 99) {
+            this.layout.setVisibility(VISIBLE);
+            this.badge_tv.setText(R.string.max_badge);
         }
     }
 
