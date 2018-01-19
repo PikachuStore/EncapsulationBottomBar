@@ -2,6 +2,7 @@ package org.bottombar.widget;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.RelativeLayout;
@@ -70,6 +71,11 @@ public class Badge extends RelativeLayout {
 
     // 设置提醒数字(String)
     public void setBadge_Num_ByString(String num) {
+
+        if (TextUtils.isEmpty(num)) {
+            this.layout.setVisibility(GONE);
+            return;
+        }
 
         if (Integer.parseInt(num) == 0) {
             this.layout.setVisibility(GONE);
