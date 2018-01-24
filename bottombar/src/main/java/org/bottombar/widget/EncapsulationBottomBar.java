@@ -89,7 +89,7 @@ public class EncapsulationBottomBar extends LinearLayout {
         mTabHost.setCurrentTab(index);
     }
 
-    /****************设置当前选中index*****************************/
+    /****************返回当前选中底部button的index*****************************/
 
     public int getCurrentTab() {
 
