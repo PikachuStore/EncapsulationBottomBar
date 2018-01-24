@@ -89,6 +89,13 @@ public class EncapsulationBottomBar extends LinearLayout {
         mTabHost.setCurrentTab(index);
     }
 
+    /****************设置当前选中index*****************************/
+
+    public int getCurrentTab() {
+
+        return mTabHost.getCurrentTab();
+    }
+
     /****************重写Tab点击事件(例：登录拦截)*****************************/
 
     public void overwriteListener(int index, OnClickListener listener) {
