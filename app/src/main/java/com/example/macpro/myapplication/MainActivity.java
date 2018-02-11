@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
         list.add(new BottomBarEntity(BlankFragment.class,
                 new BottomBarItem(this,R.mipmap.communication_normal,R.mipmap.communication_press,
-                        Color.RED,Color.BLUE,"通讯","",CircleStyle.REDSOLID)
+                        Color.RED,Color.BLUE,"通讯","",CircleStyle.REDSOLID,true)
         ));
 
         return list;
