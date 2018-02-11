@@ -166,6 +166,51 @@ public class BottomBarItem extends RelativeLayout {
         }
     }
 
+    // 图片居中，无文字1
+    public BottomBarItem(Context context, int imgResUnSelected, int imgResSelected, int colorSelectorId, String title, int notice, CircleStyle circleStyle ,boolean isNoTitle) {
+        this(context, imgResUnSelected, imgResSelected, colorSelectorId, title);
+        badge.setBadge_Num_ByInt(notice);
+        switch (circleStyle) {
+            case REDSOLID:
+                badge.setCircleStyle(circleStyle);
+                break;
+            case WHITESOLID:
+                badge.setCircleStyle(circleStyle);
+                break;
+        }
+
+        if (isNoTitle){
+
+            tv.setVisibility(GONE);
+            RelativeLayout.LayoutParams layoutParams = (LayoutParams) img.getLayoutParams();
+            layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+            tv.setLayoutParams(layoutParams);
+        }
+
+    }
+
+    // 图片居中，无文字2
+    public BottomBarItem(Context context, int imgResUnSelected, int imgResSelected, int textColorUnSelected, int textColorSelected, String title, int notice, CircleStyle circleStyle,boolean isNoTitle) {
+        this(context, imgResUnSelected, imgResSelected, textColorUnSelected, textColorSelected, title);
+        badge.setBadge_Num_ByInt(notice);
+        switch (circleStyle) {
+            case REDSOLID:
+                badge.setCircleStyle(circleStyle);
+                break;
+            case WHITESOLID:
+                badge.setCircleStyle(circleStyle);
+                break;
+        }
+
+        if (isNoTitle){
+
+            tv.setVisibility(GONE);
+            RelativeLayout.LayoutParams layoutParams = (LayoutParams) img.getLayoutParams();
+            layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+            tv.setLayoutParams(layoutParams);
+        }
+    }
+
     public void setNoticeNum(int num) {
 
         badge.setBadge_Num_ByInt(num);
